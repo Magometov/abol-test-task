@@ -20,12 +20,19 @@ ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", default="localhost 127.0.
 # ======================================================================================================================
 
 INSTALLED_APPS = [
+    # base
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # third-party
+    "django_extensions",
+    "rest_framework",
+    "drf_spectacular",
+    # applications
+    "src.apps.book.apps.BookConfig",
 ]
 
 # ======================================================================================================================
@@ -87,6 +94,25 @@ DATABASES = {
         "HOST": os.environ.get("POSTGRES_HOST", "localhost"),
         "PORT": os.environ.get("POSTGRES_PORT", "5432"),
     }
+}
+
+# ======================================================================================================================
+# DRF SETTINGS
+# ======================================================================================================================
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+# ======================================================================================================================
+# SPECTACULAR SETTINGS
+# ======================================================================================================================
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "API Documentation",
+    "DESCRIPTION": "API Documentation",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": True,
 }
 
 # ======================================================================================================================
